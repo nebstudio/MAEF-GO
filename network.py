@@ -142,10 +142,10 @@ class dct_channel_block(nn.Module):
             nn.GELU(),
             nn.Linear(channel * 4, channel * 2),
             nn.LayerNorm(channel * 2),
-            nn.Dropout(p=0.1),  # 新加的
+            nn.Dropout(p=0.1),  
             nn.GELU(),
             nn.Linear(channel * 2, channel),
-            nn.Dropout(p=0.1),  # 新加的
+            nn.Dropout(p=0.1),  
             nn.Sigmoid()
         )
 
@@ -153,12 +153,11 @@ class dct_channel_block(nn.Module):
             self.begin_downsampling = nn.Sequential(
                 nn.Conv1d(channel * 3, channel, 1),
                 nn.BatchNorm1d(channel),
-                nn.Dropout(p=0.1),  # 新加的
+                nn.Dropout(p=0.1),  
                 nn.GELU()
             )
 
         self.dct_norm = nn.LayerNorm(512, eps=1e-6)
-        # 添加自适应权重
         self.alpha = nn.Parameter(torch.ones(1) * 0.5)
         self.weights = nn.Parameter(torch.tensor([5.0, 1.0]))
         
@@ -244,7 +243,6 @@ class CL_protNET(torch.nn.Module):
 
      
     def forward(self, data):
-        # 图通道处理
         seqGraph = data.x.float()
         seqGraph, mask1 = to_dense_batch(seqGraph, data.batch)
         seqGraph = seqGraph.permute(0, 2, 1)

@@ -2,8 +2,6 @@
 
 # MAEF-GO
 Multi-Stage Attention-Based Extraction and Fusion of Protein Sequence and Structural Features for Protein Function Prediction.  
-
-Most of the codes in this study are obtained from [HEAL](https://github.com/ZhonghuiGu/HEAL) 
 ##  Clone the Repository
 ```bash
 git clone https://github.com/nebstudio/MAEF-GO
